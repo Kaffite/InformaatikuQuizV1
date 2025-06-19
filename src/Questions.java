@@ -1,16 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Questions {
-    // Loeb failist küsimused sisse? siin v main meetodis?
-    // Hashmap
-    // Meetod, kus ta küsib random küsimuse
+    ArrayList<Question> questionList;
 
-    private Map questionMap;
+    // char -> what type gets how many points (seperate class or no?)
+    private HashMap<Character, HashMap<Character, Float>> AnswerOptions;
 
-    public Questions(Map questionMap){
-        this.questionMap = questionMap;
-    }
 
 }
-
