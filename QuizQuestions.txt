@@ -1,7 +1,6 @@
-(kui pole ';' real, siis on kysimus)
 Mis varve sa kardad?
 sinine;G 0.5;C 1.0
 must;V 1.0
 Mis on su lemmik oppeaine?
 AAR;T 1.0
-ProgeII; T 0.5
+ProgeII;T 0.5
