@@ -9,5 +9,9 @@ public class Question {
         this.answerValues = answerValues;
     }
 
+    @Override
+    public String toString() {
+        return questionText + " " + answerValues;
+    }
 }
 

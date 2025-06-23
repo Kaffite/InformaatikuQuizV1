@@ -4,3 +4,6 @@ must;V 1.0
 Mis on su lemmik oppeaine?
 AAR;T 1.0
 ProgeII;T 0.5
+Kas jah voi ei?
+jah;V 0.5;
+ei;G 1.0;

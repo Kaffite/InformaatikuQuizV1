@@ -12,24 +12,27 @@ public class QuestionBank {
         this.questionList = readFromFile(filename);
     }
 
-    @Override
-    public String toString() {
-        return "QuestionBank{" +
-                "questionList=" + questionList.toString() +
-                '}';
+    public ArrayList<Question> getQuestionList() {
+        return questionList;
     }
 
     private ArrayList<Question> readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String questionText = "";
+            String line;
             HashMap<String, HashMap<Character, Double>> answerValues = new HashMap<>();
-            for (String line = br.readLine(); line != null; line = br.readLine()) {
-                if (line.contains(";")) {// line = Answer option
+            while (true){
+                line = br.readLine();
+                if (line == null){
+                    questionList.add(new Question(questionText, answerValues));
+                    break;
+                } else if (line.contains(";")) {// line = Answer option
                     AddAnswer(answerValues, line); // Adds answer to HashMap
                 } else { //  line = Question text
                     if (questionText.equals("")) questionText = line;
                     else { // next question
                         questionList.add(new Question(questionText, answerValues));
+                        answerValues = new HashMap<>(); // answerValues points to new HashMap so the Map in "questionList" wont change
                         questionText = line;
                     }
                 }
@@ -43,8 +46,8 @@ public class QuestionBank {
         String [] components = line.split(";");
         String answer = components[0];
         for (int i = 1; i < components.length; i++) { //creating the Hashmap for that answer option
-            Character key = components[i].split(" ")[0].charAt(0); // Type char
-            Double value = Double.parseDouble(components[i].split(" ")[1]); // value for that type
+            Character key = (Character) components[i].split(" ")[0].charAt(0); // Type char
+            Double value = (Double) Double.parseDouble(components[i].split(" ")[1]); // value for that type
             temporary.put(key, value);
         }
         answerValues.put(answer, temporary);
