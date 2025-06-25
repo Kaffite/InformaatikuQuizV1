@@ -3,20 +3,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class QuestionBank {
     //QuestionList in here or move to the   readFromFile method???
     ArrayList<Question> questionList = new ArrayList<>();
 
     public QuestionBank(String filename) throws IOException {
-        this.questionList = readFromFile(filename);
+        this.questionList = ReadFromFile(filename);
     }
 
     public ArrayList<Question> getQuestionList() {
         return questionList;
     }
 
-    private ArrayList<Question> readFromFile(String filename) throws IOException {
+    private ArrayList<Question> ReadFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String questionText = "";
             String line;
@@ -51,5 +52,12 @@ public class QuestionBank {
             temporary.put(key, value);
         }
         answerValues.put(answer, temporary);
+    }
+
+    public void AskQuestion(){
+        int randomNumber = (int) (Math.random() * (questionList.size())); //+1?
+        Question question = questionList.get(randomNumber);
+        System.out.println(question.toString());
+        // questionList.remove(randomNumber);
     }
 }

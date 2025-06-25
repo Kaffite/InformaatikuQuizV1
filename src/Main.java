@@ -7,7 +7,8 @@ public class Main {
         QuestionBank bank = new QuestionBank("QuizQuestions.txt");
         ArrayList<Question> questions = bank.getQuestionList();
         for (Question question : questions) {
-            System.out.println(question.toString());
+            bank.AskQuestion();
+
         }
         //catch FilenotFoundException -> ask for a name again
     }

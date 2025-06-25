@@ -11,7 +11,10 @@ public class Question {
 
     @Override
     public String toString() {
-        return questionText + " " + answerValues;
+        for (String s : answerValues.keySet()) {
+            System.out.println(s);
+        }
+        return questionText + "\n";
     }
 }
 
