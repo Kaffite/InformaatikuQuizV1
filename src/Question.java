@@ -9,12 +9,13 @@ public class Question {
         this.answerValues = answerValues;
     }
 
-    @Override
-    public String toString() {
-        for (String s : answerValues.keySet()) {
-            System.out.println(s);
-        }
-        return questionText + "\n";
+    public String getQuestionText() {
+        return questionText;
     }
+
+    public HashMap<String, HashMap<Character, Double>> getAnswerValues() {
+        return answerValues;
+    }
+
 }
 

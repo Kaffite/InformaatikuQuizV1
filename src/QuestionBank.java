@@ -55,9 +55,16 @@ public class QuestionBank {
     }
 
     public void AskQuestion(){
-        int randomNumber = (int) (Math.random() * (questionList.size())); //+1?
-        Question question = questionList.get(randomNumber);
-        System.out.println(question.toString());
-        // questionList.remove(randomNumber);
+        int randomNumber = (int) (Math.random() * (questionList.size()));
+        Question question = questionList.remove(randomNumber);
+        System.out.println(question.getQuestionText());
+        HashMap answerOptions = question.getAnswerValues();
+        int i = 0;
+        for (Object key : answerOptions.keySet()) {
+            i++;
+            System.out.println(i + ") " +  key);
+        }
     }
+
+
 }
