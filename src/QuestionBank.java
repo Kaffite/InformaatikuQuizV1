@@ -59,19 +59,22 @@ public class QuestionBank {
         answerValues.put(answer, temporary);
     }
 
-    public void AskQuestion(){
+    public Question RandomQuestion(){
         int randomNumber = (int) (Math.random() * (questionList.size()));
         Question question = questionList.remove(randomNumber);
-        System.out.println(question.getQuestionText());
+        return question;
+    }
+
+    public HashMap QuestionAnswerOptions(Question question){
         HashMap answerOptions = question.getAnswerValues();
         int i = 0;
-        HashMap<Integer, >
-        //Temporary Hashmap to get what number corresponds to what key??
-
+        HashMap<Integer, String> questionAnswer = new HashMap<>();
         for (Object key : answerOptions.keySet()) {
             i++;
             System.out.println(i + ") " +  key);
+            questionAnswer.put(i, key.toString());
         }
+        return questionAnswer;
     }
 
 

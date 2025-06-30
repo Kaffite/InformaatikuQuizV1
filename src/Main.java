@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -16,9 +17,14 @@ public class Main {
             try {
                 ArrayList<Question> questions = bank.getQuestionList();
                 while (questions.size() > 0) {
-                    bank.AskQuestion();
+                    Question question = bank.RandomQuestion();
+                    HashMap answerOptions = bank.QuestionAnswerOptions(question);
+                    System.out.println(question.getQuestionText());
                     System.out.print("Sisesta vastus (number): ");
-                    int answer = Integer.parseInt(sc.nextLine());
+                    int userAnswer = Integer.parseInt(sc.nextLine());
+                    String chosenOption = answerOptions.get(userAnswer).toString();
+                    HashMap points = question.getAnswerValues().get(chosenOption);
+                    // Every option gives points to one class?
                 }
                 break;
                 // Add Exception if the number is unfitting
