@@ -3,11 +3,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class QuestionBank {
-    //QuestionList in here or move to the   readFromFile method???
     ArrayList<Question> questionList = new ArrayList<>();
+    HashMap<Character, Double> results = new HashMap<>();
 
     public QuestionBank(String filename) throws IOException {
         this.questionList = ReadFromFile(filename);
@@ -15,6 +14,10 @@ public class QuestionBank {
 
     public ArrayList<Question> getQuestionList() {
         return questionList;
+    }
+
+    public HashMap<Character, Double> getResults() {
+        return results;
     }
 
     private ArrayList<Question> ReadFromFile(String filename) throws IOException {
@@ -29,6 +32,7 @@ public class QuestionBank {
                     break;
                 } else if (line.contains(";")) {// line = Answer option
                     AddAnswer(answerValues, line); // Adds answer to HashMap
+
                 } else { //  line = Question text
                     if (questionText.equals("")) questionText = line;
                     else { // next question
@@ -50,6 +54,7 @@ public class QuestionBank {
             Character key = (Character) components[i].split(" ")[0].charAt(0); // Type char
             Double value = (Double) Double.parseDouble(components[i].split(" ")[1]); // value for that type
             temporary.put(key, value);
+            results.putIfAbsent(key, 0.0); // Adds the Character also to results HashMap
         }
         answerValues.put(answer, temporary);
     }
@@ -60,6 +65,9 @@ public class QuestionBank {
         System.out.println(question.getQuestionText());
         HashMap answerOptions = question.getAnswerValues();
         int i = 0;
+        HashMap<Integer, >
+        //Temporary Hashmap to get what number corresponds to what key??
+
         for (Object key : answerOptions.keySet()) {
             i++;
             System.out.println(i + ") " +  key);
