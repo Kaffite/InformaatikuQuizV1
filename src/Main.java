@@ -8,11 +8,13 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
         QuestionBank bank = readFromFile(sc);
-        System.out.println(bank.getResults());
-        askQuestions(sc, bank);
+        Points points = new Points(bank.getResults());
+        System.out.println(points.toString());
+        askQuestions(sc, bank, points);
+
     }
 
-    private static void askQuestions(Scanner sc, QuestionBank bank) throws InterruptedException {
+    private static void askQuestions(Scanner sc, QuestionBank bank, Points points) throws InterruptedException {
         while (true){
             try {
                 ArrayList<Question> questions = bank.getQuestionList();
@@ -23,8 +25,8 @@ public class Main {
                     System.out.print("Sisesta vastus (number): ");
                     int userAnswer = Integer.parseInt(sc.nextLine());
                     String chosenOption = answerOptions.get(userAnswer).toString();
-                    HashMap points = question.getAnswerValues().get(chosenOption);
-                    // Every option gives points to one class?
+                    HashMap optionPoints = question.getAnswerValues().get(chosenOption);
+                    points.AddPoints(optionPoints);
                 }
                 break;
                 // Add Exception if the number is unfitting
