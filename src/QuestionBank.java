@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// Class for reading questions from file,
 public class QuestionBank {
     ArrayList<Question> questionList = new ArrayList<>();
     HashMap<Character, Double> results = new HashMap<>();
@@ -20,17 +21,19 @@ public class QuestionBank {
         return results;
     }
 
+    // Creates empty question?
     private ArrayList<Question> ReadFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String questionText = "";
             String line;
+            // String = optionText, Hashmap = how many points for what type
             HashMap<String, HashMap<Character, Double>> answerValues = new HashMap<>();
             while (true){
                 line = br.readLine();
-                if (line == null){
+                if (line.equals("")){
                     questionList.add(new Question(questionText, answerValues));
                     break;
-                } else if (line.contains(";")) {// line = Answer option
+                } else if (line.contains(";")) {// line = question option
                     AddAnswer(answerValues, line); // Adds answer to HashMap
 
                 } else { //  line = Question text
@@ -46,6 +49,8 @@ public class QuestionBank {
         return questionList;
     }
 
+    // Function:
+    // Support class for reading from file
     private void AddAnswer(HashMap<String, HashMap<Character, Double>> answerValues, String line) {
         HashMap<Character, Double> temporary = new HashMap<>();
         String [] components = line.split(";");
@@ -59,12 +64,22 @@ public class QuestionBank {
         answerValues.put(answer, temporary);
     }
 
+    // Function:
+    // 1) Asks a random question from questionlist.
+    // 2) Removes the question from questionlist
+    // 3) Returns the removed question
     public Question RandomQuestion(){
         int randomNumber = (int) (Math.random() * (questionList.size()));
         Question question = questionList.remove(randomNumber);
         return question;
     }
 
+    // Function:
+    // 1) Matches each choice option with a number
+    // 2) prints the text of question option and corresponding number
+    // 3) returns a hashmap of option choices ->
+    //      key   = number (of the option)
+    //      value = text (of the option)
     public HashMap QuestionAnswerOptions(Question question){
         HashMap answerOptions = question.getAnswerValues();
         int i = 0;

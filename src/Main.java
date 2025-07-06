@@ -9,30 +9,40 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         QuestionBank bank = readFromFile(sc);
         Points points = new Points(bank.getResults());
-        System.out.println(points.toString());
         askQuestions(sc, bank, points);
 
     }
 
+    // Function:
+    // Asks questions from questionlist
+    // Removes asked question.
+    // Stops asking questions if the questionlist is empty.
     private static void askQuestions(Scanner sc, QuestionBank bank, Points points) throws InterruptedException {
-        while (true){
-            try {
-                ArrayList<Question> questions = bank.getQuestionList();
-                while (questions.size() > 0) {
-                    Question question = bank.RandomQuestion();
-                    HashMap answerOptions = bank.QuestionAnswerOptions(question);
+
+        ArrayList<Question> questions = bank.getQuestionList();
+        while (questions.size() > 0) {
+            Question question = bank.RandomQuestion();
+            while (true) {
+                try {
                     System.out.println(question.getQuestionText());
+                    HashMap answerOptions = bank.QuestionAnswerOptions(question);
                     System.out.print("Sisesta vastus (number): ");
                     int userAnswer = Integer.parseInt(sc.nextLine());
                     String chosenOption = answerOptions.get(userAnswer).toString();
                     HashMap optionPoints = question.getAnswerValues().get(chosenOption);
                     points.AddPoints(optionPoints);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Vastuseks sobib ainult number. \nProovi uuesti.");
+                    Thread.sleep(3000);
+                    System.out.println("");
+                } catch (NullPointerException e) {
+                    System.out.println("Sisestatud number peab vastama mingile " +
+                            "vastusevariandis etteantud numbrile." +
+                            " \nProovi uuesti. ");
+                    Thread.sleep(3000);
+                    System.out.println("");
                 }
-                break;
-                // Add Exception if the number is unfitting
-            } catch (NumberFormatException e) {
-                System.out.println("Vastuseks sobib ainult number. \nProovi uuesti \n");
-                Thread.sleep(3000);
             }
         }
     }
