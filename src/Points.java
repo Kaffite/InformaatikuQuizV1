@@ -7,6 +7,10 @@ public class Points {
         points = existing;
     }
 
+    public HashMap<Character, Double> getPoints() {
+        return points;
+    }
+
     public void AddPoints (HashMap pointsToAdd) {
         for (Object o: pointsToAdd.keySet()){
           Double value = (Double) pointsToAdd.get(o);

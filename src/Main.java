@@ -10,7 +10,7 @@ public class Main {
         QuestionBank bank = readFromFile(sc);
         Points points = new Points(bank.getResults());
         askQuestions(sc, bank, points);
-
+        System.out.println(points.getPoints());
     }
 
     // Function:
@@ -18,14 +18,13 @@ public class Main {
     // Removes asked question.
     // Stops asking questions if the questionlist is empty.
     private static void askQuestions(Scanner sc, QuestionBank bank, Points points) throws InterruptedException {
-
         ArrayList<Question> questions = bank.getQuestionList();
         while (questions.size() > 0) {
-            Question question = bank.RandomQuestion();
+            Question question = bank.randomQuestion();
             while (true) {
                 try {
                     System.out.println(question.getQuestionText());
-                    HashMap answerOptions = bank.QuestionAnswerOptions(question);
+                    HashMap answerOptions = bank.answers(question);
                     System.out.print("Sisesta vastus (number): ");
                     int userAnswer = Integer.parseInt(sc.nextLine());
                     String chosenOption = answerOptions.get(userAnswer).toString();

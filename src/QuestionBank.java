@@ -10,7 +10,7 @@ public class QuestionBank {
     HashMap<Character, Double> results = new HashMap<>();
 
     public QuestionBank(String filename) throws IOException {
-        this.questionList = ReadFromFile(filename);
+        this.questionList = readFromFile(filename);
     }
 
     public ArrayList<Question> getQuestionList() {
@@ -22,7 +22,7 @@ public class QuestionBank {
     }
 
     // Creates empty question?
-    private ArrayList<Question> ReadFromFile(String filename) throws IOException {
+    private ArrayList<Question> readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String questionText = "";
             String line;
@@ -30,11 +30,13 @@ public class QuestionBank {
             HashMap<String, HashMap<Character, Double>> answerValues = new HashMap<>();
             while (true){
                 line = br.readLine();
-                if (line.equals("")){
+                if (line.equals("---")) {
+                    continue;
+                }else if (line.equals("")){
                     questionList.add(new Question(questionText, answerValues));
                     break;
                 } else if (line.contains(";")) {// line = question option
-                    AddAnswer(answerValues, line); // Adds answer to HashMap
+                    addAnswer(answerValues, line); // Adds answer to HashMap
 
                 } else { //  line = Question text
                     if (questionText.equals("")) questionText = line;
@@ -51,13 +53,14 @@ public class QuestionBank {
 
     // Function:
     // Support class for reading from file
-    private void AddAnswer(HashMap<String, HashMap<Character, Double>> answerValues, String line) {
+    private void addAnswer(HashMap<String, HashMap<Character, Double>> answerValues, String line) {
         HashMap<Character, Double> temporary = new HashMap<>();
         String [] components = line.split(";");
         String answer = components[0];
         for (int i = 1; i < components.length; i++) { //creating the Hashmap for that answer option
-            Character key = (Character) components[i].split(" ")[0].charAt(0); // Type char
-            Double value = (Double) Double.parseDouble(components[i].split(" ")[1]); // value for that type
+            String current = components[i].substring(1);
+            Character key = (Character) current.split(" ")[0].charAt(0); // Type char
+            Double value = (Double) Double.parseDouble(current.split(" ")[1]); // value for that type
             temporary.put(key, value);
             results.putIfAbsent(key, 0.0); // Adds the Character also to results HashMap
         }
@@ -68,7 +71,7 @@ public class QuestionBank {
     // 1) Asks a random question from questionlist.
     // 2) Removes the question from questionlist
     // 3) Returns the removed question
-    public Question RandomQuestion(){
+    public Question randomQuestion(){
         int randomNumber = (int) (Math.random() * (questionList.size()));
         Question question = questionList.remove(randomNumber);
         return question;
@@ -80,7 +83,7 @@ public class QuestionBank {
     // 3) returns a hashmap of option choices ->
     //      key   = number (of the option)
     //      value = text (of the option)
-    public HashMap QuestionAnswerOptions(Question question){
+    public HashMap answers(Question question){
         HashMap answerOptions = question.getAnswerValues();
         int i = 0;
         HashMap<Integer, String> questionAnswer = new HashMap<>();
