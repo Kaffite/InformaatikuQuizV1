@@ -1,0 +1,4 @@
+V; (V)abamõtleja - Sa pole mingisugune tavaline lihtsurelik, vaid mõtestad maailma lahti endale sobivalt. Sinu loovusel pole piire ning ka “kas” küsimustel on sinu arust lõpmatuseni palju erinevaid vastuseid. Oled tõeline innovaator.
+T; (T)ryhard - Arvad endast arvatavasti veidi liiga palju ning pead end teistest paremaks. Sinu suurimaks vaenlaseks on sinu ego ning kui sa pole tulevikus 10x engineer, siis sa vähemalt ise usud, et oled.
+C; (C)hat GPT kummardaja - Mitte keegi pole targem kui sinu ustav LLM. Arvad (loodad), et AI overlordid võtavad üle maailma ning seega proovid juba praegu saada nende soosingut.
+S; (S)tockholmi sündroomiga informaatik - Sisendad endale pidevalt, et sa armastad IT-d, kuid see (ilmselt) ei meeldi sulle. Oled ilmselt läbipõlenud ning võimalik, et vahetad varsti eriala.
