@@ -5,18 +5,25 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
+//        Siia laheb:
+//          kysib kirjelduste faili nime
+//          Kui error nimega, kysib uuesti
+//          Kas IOException ka pyyda kinni -> teavitada, et formaat vale
         QuestionBank bank = readFromFile(sc);
-        Points points = new Points(bank.getResults());
+        Points points = new Points(bank.getPointMap());
         askQuestions(sc, bank, points);
         System.out.println(points.getPoints());
     }
 
-    // Function:
-    // Asks questions from questionlist
-    // Removes asked question.
-    // Stops asking questions if the questionlist is empty.
+/*
+    Function:
+     Asks questions from questionlist
+     Removes asked question.
+     Stops asking questions if the questionlist is empty.
+*/
     private static void askQuestions(Scanner sc, QuestionBank bank, Points points) throws InterruptedException {
         ArrayList<Question> questions = bank.getQuestionList();
         while (questions.size() > 0) {

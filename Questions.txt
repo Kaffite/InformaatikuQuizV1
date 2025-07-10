@@ -1,6 +1,7 @@
 Mis värvi sa kõige rohkem kardad?
 Roheline; T 1.0
 Sinine; T 1.0
+Must; S 0.5
 punane; T 1.0
 Ma ei karda värve; C 1.0
 Kõiki värve; V 1.0
@@ -11,8 +12,10 @@ ei; C 0.0
 Oot, küsin Claudelt; C 1.0
 Võib-olla; V 1.0
 Ma ei vasta sellele küsimusele; T 1.0
+Bro IDK; S 1.5
 ---
 Mis sa arvad AI-st?
+Ta teeb asju; S 1.5
 Kasutan AI-d oma psühholoogina; C 2.0
 AI on hea, aga mina olen palju parem; T 0.5
 Annan talle valeinfot, et maailma tasakaalus hoida; V 1.0
@@ -21,23 +24,26 @@ Mis sa paneksid muutuja nimeks, kui muutuja on minimaalse arvu hoidmiseks?
 "a"; C 0.5
 "skibidi"; V 0.5
 "minArv"; T 0.5
+Mis seal vahet on, muutuja on muutuja; S 1.5
 muutujate kasutamine on amatööridele; V 2.0
 ---
 Kes on informaatiku suurim looduslik kiskja?
+Koduülesanded; S 1.5
 Muru; T 0.5
 Chat GPT uuema versiooni tasuta limiit; C 2.0
 Light mode; T 0.5
 Informaatikul pole vaenlasi, kõik on semud; V 1.0
 ---
 Kuidas sa debugid koodi?
-Kasutan debuggerit; T 0.25
+Kasutan debuggerit; S 0.25
 Prindin igal pool konsooli teksti, debugger on argpüksidele; V 1.0
-Ma ei kirjuta katkist koodi, mul pole vaja debugimist; T 2.0
+Ma ei kirjuta katkist koodi, mul pole vaja debugimist; T 1.5
 Promptide abil; C 1.5
 ---
 Mis on su lemmik IDE?
 Mis see tähendab?; C 2.0
 Thonny; V 0.5
+PyCharm; S 0.25
 IntelliJ/VS code; T 1.0
 notepad; V 0.5
 CoPilot on ainus, mida vaja; C 1.0
@@ -49,18 +55,22 @@ Lotte; T 1.0
 Bruno; C 1.0
 Albert; V 0.5
 Kärbes Jaak; V 1.0
+Ma ei tea Lotte tegelasi; S 0.5
 ---
 Milline on sinu suhe kohviga?
+Joon seda nagu vett; S 1.0
 Kohv on nõrkadele; V 0.5
 Joon ainult perfektselt valmistatud kohvi; T 1.0
-Järan kohviube, nagu tõeline OG; V 1.0
-Kohv on soliidne 7/10; C 1.5
+Järan kohviube, nagu tõeline OG; V 1.5
+Kohv on soliidne 7/10; C 1.0
 ---
 Kes võidaks võitluse, kas miljard lõvi või päike?
 Lõvid kavaldaks päikese üle; V 0.5
 Päike ilmselgelt; T 1.0
 Ma ei tea; C 2.0
 Lõvid võidaks, kui nad ründaks öösel; V 1.0
+Mis küsimus see on, ma ei jaksa enam vastata; S 1.0
+
 
 
 

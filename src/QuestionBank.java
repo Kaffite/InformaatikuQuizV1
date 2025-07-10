@@ -7,7 +7,7 @@ import java.util.HashMap;
 // Class for reading questions from file,
 public class QuestionBank {
     ArrayList<Question> questionList = new ArrayList<>();
-    HashMap<Character, Double> results = new HashMap<>();
+    HashMap<Character, Double> pointMap = new HashMap<>();
 
     public QuestionBank(String filename) throws IOException {
         this.questionList = readFromFile(filename);
@@ -17,8 +17,8 @@ public class QuestionBank {
         return questionList;
     }
 
-    public HashMap<Character, Double> getResults() {
-        return results;
+    public HashMap<Character, Double> getPointMap() {
+        return pointMap;
     }
 
     // Creates empty question?
@@ -51,8 +51,10 @@ public class QuestionBank {
         return questionList;
     }
 
-    // Function:
-    // Support class for reading from file
+/*
+     Function:
+     Support class for reading from file
+*/
     private void addAnswer(HashMap<String, HashMap<Character, Double>> answerValues, String line) {
         HashMap<Character, Double> temporary = new HashMap<>();
         String [] components = line.split(";");
@@ -62,7 +64,7 @@ public class QuestionBank {
             Character key = (Character) current.split(" ")[0].charAt(0); // Type char
             Double value = (Double) Double.parseDouble(current.split(" ")[1]); // value for that type
             temporary.put(key, value);
-            results.putIfAbsent(key, 0.0); // Adds the Character also to results HashMap
+            pointMap.putIfAbsent(key, 0.0); // Adds the Character also to results HashMap
         }
         answerValues.put(answer, temporary);
     }

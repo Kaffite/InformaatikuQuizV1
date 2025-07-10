@@ -3,8 +3,8 @@ import java.util.HashMap;
 public class Points {
     HashMap<Character, Double> points;
 
-    public Points(HashMap existing) {
-        points = existing;
+    public Points(HashMap defaultPointMap) {
+        points = defaultPointMap;
     }
 
     public HashMap<Character, Double> getPoints() {
