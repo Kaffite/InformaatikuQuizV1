@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// Class for reading questions from file,
+// Class for reading questions from file
 public class QuestionBank {
     ArrayList<Question> questionList = new ArrayList<>();
     HashMap<Character, Double> pointMap = new HashMap<>();
