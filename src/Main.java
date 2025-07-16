@@ -22,18 +22,18 @@ public class Main {
             System.out.println(type + "- " + typePoints + " punkti");
         }
 
-        System.out.println("\nSina oled: ");
         HashMap descMap = descriptions.getDescriptions();
         List<Map.Entry<Character, Double>> list = new ArrayList<>(pointMap.entrySet());
         list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
         double max = list.get(0).getValue();
         for (Map.Entry<Character, Double> entry : list) {
+            // Stops loop if all the types that got max points have been printed
             if (entry.getValue() != max) break;
             Character typeChar = entry.getKey();
             String description = (String) descMap.get(typeChar);
-            // In progress:
-            System.out.println(description);
-            String[] descParts = description.split(".");
+            String type = (String) charTypeMap.get(typeChar);
+            String[] descParts = description.split("\\. ");
+            System.out.println("\nSa oled " + type + ":");
             for (String part : descParts) {
                 System.out.println(part);
             }
@@ -56,21 +56,21 @@ public class Main {
                     System.out.println(question.getQuestionText());
                     HashMap answerOptions = bank.answers(question);
                     System.out.print("Sisesta vastus (number): ");
-                    int userAnswer = 2; //Integer.parseInt(sc.nextLine());
+                    int userAnswer =  Integer.parseInt(sc.nextLine());
                     String chosenOption = answerOptions.get(userAnswer).toString();
                     HashMap optionPoints = question.getAnswerValues().get(chosenOption);
                     points.addPoints(optionPoints);
                     System.out.println("");
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.println("Vastuseks sobib ainult number. \nProovi uuesti.");
+                    System.out.println("\nVastuseks sobib ainult number. Proovi uuesti.");
                     Thread.sleep(3000);
                     System.out.println("");
                 } catch (NullPointerException e) {
-                    System.out.println("Sisestatud number peab vastama mingile " +
+                    System.out.println("\nSisestatud number peab vastama mingile " +
                             "vastusevariandis etteantud numbrile." +
                             " \nProovi uuesti. ");
-                    Thread.sleep(3000);
+                    Thread.sleep(4000);
                     System.out.println("");
                 }
             }

@@ -28,9 +28,10 @@ public class Descriptions {
                 while ((line = br.readLine()) != null) {
                 String[] parts = line.split(";");
                 Character symbol = (Character) parts[0].charAt(0);
-                // substring removes the extra space
-                String description = parts[1].substring(1);
-                String type = description.split("-")[0];
+                String descAndType [] = parts[1].substring(1).split("-");
+                String type = descAndType[0];
+                type = type.substring(0, type.length()-1); // removes extra space
+                String description = descAndType[1].substring(1);
                 descriptions.put(symbol, description);
                 types.put(symbol, type);
                 System.out.println(types.toString());
