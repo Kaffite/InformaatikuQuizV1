@@ -3,9 +3,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+// Class that helps with student type descriptions
 public class Descriptions {
-    HashMap<Character, String> descriptions;
-    HashMap<Character, String> types = new HashMap<>();
+    HashMap<Character, String> descriptions; // Symbol, type name and description
+    HashMap<Character, String> types = new HashMap<>(); // Symbol, Type name
 
     public Descriptions(String filename) throws IOException {
         descriptions = readDescriptions(filename);

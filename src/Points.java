@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.*;
 
 //Class that counts how many points a student type gets
 public class Points {
@@ -18,5 +18,6 @@ public class Points {
           points.put((Character) o, points.get(o) + value); // Add value to existing value
         }
     }
+
 
 }

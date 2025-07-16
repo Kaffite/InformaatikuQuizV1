@@ -1,5 +1,6 @@
 import java.util.HashMap;
 
+// Defines Object called "Question"
 public class Question {
     private String questionText;
     private HashMap<String, HashMap<Character, Double>> answerValues;

@@ -1,15 +1,12 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
         Descriptions descriptions = new Descriptions("Descriptions.txt");
-        QuestionBank bank = readFromFile(sc);
+        QuestionBank bank = bank = new QuestionBank("Questions.txt");
         Points points = new Points(bank.getPointMap());
         askQuestions(sc, bank, points);
         displayResults(points, descriptions);
@@ -19,24 +16,28 @@ public class Main {
         HashMap pointMap = points.getPoints();
         HashMap charTypeMap = descriptions.getTypes();
         System.out.println("\nSinu tulemused: ");
-        double maxPoints = 0;
-        ArrayList<Character> userTypes = new ArrayList<>();
         for (Object o : pointMap.keySet()) {
-            Character oChar = (Character) o.toString().charAt(0);
-            String type = (String) charTypeMap.get(oChar);
-            Double typePoints = (Double) pointMap.get(oChar);
+            String type = (String) charTypeMap.get(o);
+            Double typePoints = (Double) pointMap.get(o);
             System.out.println(type + "- " + typePoints + " punkti");
-            if (typePoints > maxPoints) {
-                maxPoints = typePoints;
-                userTypes.clear();
-                userTypes.add(oChar);
-            }
-            else if (typePoints == maxPoints){
-                userTypes.add(oChar);
+        }
+
+        System.out.println("\nSina oled: ");
+        HashMap descMap = descriptions.getDescriptions();
+        List<Map.Entry<Character, Double>> list = new ArrayList<>(pointMap.entrySet());
+        list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        double max = list.get(0).getValue();
+        for (Map.Entry<Character, Double> entry : list) {
+            if (entry.getValue() != max) break;
+            Character typeChar = entry.getKey();
+            String description = (String) descMap.get(typeChar);
+            // In progress:
+            System.out.println(description);
+            String[] descParts = description.split(".");
+            for (String part : descParts) {
+                System.out.println(part);
             }
         }
-        // Displays what class user is
-
     }
 
     /*
@@ -54,11 +55,12 @@ public class Main {
                 try {
                     System.out.println(question.getQuestionText());
                     HashMap answerOptions = bank.answers(question);
-                    //System.out.print("Sisesta vastus (number): ");
-                    int userAnswer = 2;//Integer.parseInt(sc.nextLine());
+                    System.out.print("Sisesta vastus (number): ");
+                    int userAnswer = 2; //Integer.parseInt(sc.nextLine());
                     String chosenOption = answerOptions.get(userAnswer).toString();
                     HashMap optionPoints = question.getAnswerValues().get(chosenOption);
                     points.addPoints(optionPoints);
+                    System.out.println("");
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Vastuseks sobib ainult number. \nProovi uuesti.");
@@ -73,21 +75,5 @@ public class Main {
                 }
             }
         }
-    }
-
-    private static QuestionBank readFromFile(Scanner sc) throws InterruptedException, IOException{
-        QuestionBank bank;
-        while (true) {
-            try {
-                //System.out.print("Sisesta faili nimi: ");
-                String fileName = "Questions.txt"; //sc.nextLine();
-                bank = new QuestionBank(fileName);
-                break;
-            } catch (FileNotFoundException e) {
-                System.out.println("Sellist faili ei leidu.\nKontrolli kas sisestasid faili nime korrektselt.\n");
-                Thread.sleep(3000);
-            }
-        }
-        return bank;
     }
 }
