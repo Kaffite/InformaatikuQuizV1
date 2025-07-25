@@ -7,8 +7,8 @@ Ma ei karda värve; C 1.0
 Kõiki värve; V 1.0
 ---
 Kas jah voi ei?
-Jah; C 0.0
-ei; C 0.0
+Jah; C 0.25
+ei; C 0.25
 Oot, küsin Claudelt; C 1.0
 Võib-olla; V 1.0
 Ma ei vasta sellele küsimusele; T 1.0
@@ -21,7 +21,7 @@ AI on hea, aga mina olen palju parem; T 0.5
 Annan talle valeinfot, et maailma tasakaalus hoida; V 1.0
 ---
 Mis sa paneksid muutuja nimeks, kui muutuja on minimaalse arvu hoidmiseks?
-"a"; C 0.5
+"a"; C 0.25
 "skibidi"; V 0.5
 "minArv"; T 0.5
 Mis seal vahet on, muutuja on muutuja; S 1.5
