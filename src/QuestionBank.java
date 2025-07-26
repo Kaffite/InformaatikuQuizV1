@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// Class for reading questions from file
+/*
+    Purpose:
+    1) Read questions from a file to an Arraylist
+    2) Create an empty Hashmap for points (pointMap) that Points uses as a template
+    3) Ask questions in a random order and display the answer options and corresponding numbers
+*/
 public class QuestionBank {
     ArrayList<Question> questionList = new ArrayList<>();
     HashMap<Character, Double> pointMap = new HashMap<>();
@@ -21,7 +26,12 @@ public class QuestionBank {
         return pointMap;
     }
 
-    // Creates empty question?
+    /**
+     * Function: Reads Questions (and possible answers to the questions) from a .txt file
+     * @param filename the name of the .txt file
+     * @return Arraylist that contains Questions (Question format defined in class 'Question')
+     * @throws IOException
+     */
     private ArrayList<Question> readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String questionText = "";
@@ -42,7 +52,7 @@ public class QuestionBank {
                     if (questionText.equals("")) questionText = line;
                     else { // next question
                         questionList.add(new Question(questionText, answerValues));
-                        answerValues = new HashMap<>(); // answerValues points to new HashMap so the Map in "questionList" wont change
+                        answerValues = new HashMap<>(); // clears Hashmap for next question
                         questionText = line;
                     }
                 }
@@ -51,10 +61,12 @@ public class QuestionBank {
         return questionList;
     }
 
-/*
-     Function:
-     Support class for reading from file
-*/
+    /**
+     * Function: Support class for reading from file.
+     * Creates a hashmap for all the possible answers for a question
+     * @param answerValues (Hashmap: type, pointAmount) if that answer is chosen - different for each answer to a question
+     * @param line line read from the .txt file
+     */
     private void addAnswer(HashMap<String, HashMap<Character, Double>> answerValues, String line) {
         HashMap<Character, Double> temporary = new HashMap<>();
         String [] components = line.split(";");
@@ -69,22 +81,28 @@ public class QuestionBank {
         answerValues.put(answer, temporary);
     }
 
-    // Function:
-    // 1) Asks a random question from questionlist.
-    // 2) Removes the question from questionlist
-    // 3) Returns the removed question
+    /**
+     *  Function:
+     *  1) Chooses a random question from the questionlist.
+     *  2) Removes the question that was asked from the questionlist.
+     * @return Returns the question that was chosen (removed)
+     */
     public Question randomQuestion(){
         int randomNumber = (int) (Math.random() * (questionList.size()));
         Question question = questionList.remove(randomNumber);
         return question;
     }
 
-    // Function:
-    // 1) Matches each choice option with a number
-    // 2) prints the text of question option and corresponding number
-    // 3) returns a hashmap of option choices ->
-    //      key   = number (of the option)
-    //      value = text (of the option)
+    /**
+     *  Function:
+     *  1) Matches each choice option with a number
+     *  2) prints the text of question option and corresponding number
+     *  3) returns a hashmap of option choices:
+     *       key   = number (of the option)
+     *       value = text (of the option)
+     * @param question the question that is being asked at the moment
+     * @return Hashmap with all the choice options
+     */
     public HashMap answers(Question question){
         HashMap answerOptions = question.getAnswerValues();
         int i = 0;

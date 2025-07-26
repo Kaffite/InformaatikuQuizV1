@@ -3,7 +3,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-// Class that helps with student type descriptions
+/*
+    Purpose:
+    1) Reads descriptions from a file
+    2) Contains description and type names for each student type
+ */
 public class Descriptions {
     HashMap<Character, String> descriptions; // Symbol, type name and description
     HashMap<Character, String> types = new HashMap<>(); // Symbol, Type name
@@ -20,7 +24,14 @@ public class Descriptions {
         return types;
     }
 
-    // Reads Descriptions from a .txt file
+    /**
+     * Function: Reads the descriptions for each student type from a .txt file
+     * @param filename The name of the .txt file
+     * @return Hashmap:
+     *      key - Symbol (acronym) of the type
+     *      value - Description of the type
+     * @throws IOException
+     */
     private HashMap<Character, String> readDescriptions(String filename) throws IOException {
         descriptions = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {

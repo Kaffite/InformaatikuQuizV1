@@ -1,6 +1,9 @@
 import java.util.*;
-
-//Class that counts how many points a student type gets
+/*
+    Purpose:
+    1) Contains the points for each student type
+    2) Adds points to the types, based on user's answers
+ */
 public class Points {
     HashMap<Character, Double> points;
 

@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.*;
 
+
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -12,16 +13,24 @@ public class Main {
         displayResults(points, descriptions);
     }
 
+    /**
+     * Function:
+     * 1) Displays results for each student type
+     * 2) Prints Descriptions for the type(s) that got the most points
+     * @param points Stores how many points each type has
+     * @param descriptions Stores all descriptions
+     */
     private static void displayResults(Points points, Descriptions descriptions) {
+        // Displays points for each student type
         HashMap pointMap = points.getPoints();
         HashMap charTypeMap = descriptions.getTypes();
         System.out.println("\nSinu tulemused: ");
         for (Object o : pointMap.keySet()) {
             String type = (String) charTypeMap.get(o);
             Double typePoints = (Double) pointMap.get(o);
-            System.out.println(type + "- " + typePoints + " punkti");
+            System.out.println(type + " - " + typePoints + " punkti");
         }
-
+        // Displays the descriptions of the student type(s) that the user got the most points for
         HashMap descMap = descriptions.getDescriptions();
         List<Map.Entry<Character, Double>> list = new ArrayList<>(pointMap.entrySet());
         list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
@@ -37,16 +46,21 @@ public class Main {
             for (String part : descParts) {
                 System.out.println(part);
             }
+            System.out.println("");
         }
     }
 
-    /*
-        Function:
-         Asks questions from questionlist
-         Based on what user answered, adds points to student types
-         Removes asked question.
-         Stops asking questions if the questionlist is empty.
-    */
+    /**
+     * Function:
+     * 1) Asks questions from questionlist
+     * 2) Based on what user answered, adds points to student types
+     * 3) Removes asked question.
+     * 4) Stops asking questions if the questionlist is empty.
+     * @param sc Scanner for reading user input
+     * @param bank Used for asking questions and displaying all the possible answers
+     * @param points Adds points to corresponding type based on user input
+     * @throws InterruptedException
+     */
     private static void askQuestions(Scanner sc, QuestionBank bank, Points points) throws InterruptedException {
         ArrayList<Question> questions = bank.getQuestionList();
         while (questions.size() > 0) {
@@ -65,14 +79,14 @@ public class Main {
                 } catch (NumberFormatException e) {
                     System.out.println("\nVastuseks sobib ainult number. Proovi uuesti.");
                     Thread.sleep(3000);
-                    System.out.println("");
                 } catch (NullPointerException e) {
-                    System.out.println("\nSisestatud number peab vastama mingile " +
+                    System.out.println
+                            ("\nSisestatud number peab vastama mingile " +
                             "vastusevariandis etteantud numbrile." +
                             " \nProovi uuesti. ");
                     Thread.sleep(4000);
-                    System.out.println("");
                 }
+                System.out.println(""); // An empty line after Exception (readability)
             }
         }
     }
