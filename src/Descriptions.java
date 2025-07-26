@@ -45,7 +45,6 @@ public class Descriptions {
                 String description = descAndType[1].substring(1);
                 descriptions.put(symbol, description);
                 types.put(symbol, type);
-                System.out.println(types.toString());
             }
         }
         return descriptions;
