@@ -1,3 +1,10 @@
+package App;
+
+import Backend.Descriptions;
+import Backend.Points;
+import Backend.Question;
+import Backend.QuestionBank;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -16,7 +23,7 @@ public class Main {
     /**
      * Function:
      * 1) Displays results for each student type
-     * 2) Prints Descriptions for the type(s) that got the most points
+     * 2) Prints Backend.Descriptions for the type(s) that got the most points
      * @param points Stores how many points each type has
      * @param descriptions Stores all descriptions
      */

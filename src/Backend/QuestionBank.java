@@ -1,3 +1,5 @@
+package Backend;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,7 +9,7 @@ import java.util.HashMap;
 /*
     Purpose:
     1) Read questions from a file to an Arraylist
-    2) Create an empty Hashmap for points (pointMap) that Points uses as a template
+    2) Create an empty Hashmap for points (pointMap) that Backend.Points uses as a template
     3) Ask questions in a random order and display the answer options and corresponding numbers
 */
 public class QuestionBank {
@@ -29,7 +31,7 @@ public class QuestionBank {
     /**
      * Function: Reads Questions (and possible answers to the questions) from a .txt file
      * @param filename the name of the .txt file
-     * @return Arraylist that contains Questions (Question format defined in class 'Question')
+     * @return Arraylist that contains Questions (Backend.Question format defined in class 'Backend.Question')
      * @throws IOException
      */
     private ArrayList<Question> readFromFile(String filename) throws IOException {
@@ -48,7 +50,7 @@ public class QuestionBank {
                 } else if (line.contains(";")) {// line = question option
                     addAnswer(answerValues, line); // Adds answer to HashMap
 
-                } else { //  line = Question text
+                } else { //  line = Backend.Question text
                     if (questionText.equals("")) questionText = line;
                     else { // next question
                         questionList.add(new Question(questionText, answerValues));
